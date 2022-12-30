@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "../images/logo-bg.png";
+import Logo from "../Assets/images/logo-bg.png";
 import classes from "../styles/Nav.module.css";
 import Account from "./Account";
 
