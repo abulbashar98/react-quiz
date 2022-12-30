@@ -1,6 +1,7 @@
 import "../styles/App.css";
 import Layout from "./Layout";
-import SignUp from "./Pages/SignUp";
+import Login from "./Pages/Login";
+// import SignUp from "./Pages/SignUp";
 // import Home from "./Pages/Home";
 
 export default function App() {
@@ -8,7 +9,8 @@ export default function App() {
     <div className="App">
       <Layout>
         {/* <Home /> */}
-        <SignUp />
+        {/* <SignUp /> */}
+        <Login />
       </Layout>
     </div>
   );
