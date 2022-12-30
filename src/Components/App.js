@@ -1,6 +1,7 @@
 import "../styles/App.css";
 import Layout from "./Layout";
-import Login from "./Pages/Login";
+import Quiz from "./Pages/Quiz";
+// import Login from "./Pages/Login";
 // import SignUp from "./Pages/SignUp";
 // import Home from "./Pages/Home";
 
@@ -10,7 +11,8 @@ export default function App() {
       <Layout>
         {/* <Home /> */}
         {/* <SignUp /> */}
-        <Login />
+        {/* <Login /> */}
+        <Quiz />
       </Layout>
     </div>
   );
