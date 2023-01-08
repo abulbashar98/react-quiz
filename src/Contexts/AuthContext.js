@@ -29,7 +29,7 @@ export default function AuthProvider({ children }) {
     });
 
     return subscription;
-  }, [auth]);
+  }, []);
 
   // Sign Up Function
 
