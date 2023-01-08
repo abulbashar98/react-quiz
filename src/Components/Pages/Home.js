@@ -1,11 +1,11 @@
 import React from "react";
 import classes from "../../styles/Videos.module.css";
-import Video from "../Videos";
+import Videos from "../Videos";
 
 const Home = () => {
   return (
     <div className={classes.videos}>
-      <Video />
+      <Videos />
     </div>
   );
 };

@@ -11,3 +11,10 @@
 .account > span:last-child {
   cursor: pointer;
 }
+
+.active {
+  color: #01fe84;
+  background-color: black;
+  border-radius: 10px;
+  padding: 0.4em;
+}
