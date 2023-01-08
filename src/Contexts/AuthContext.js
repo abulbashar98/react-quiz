@@ -7,6 +7,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import React, { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import app from "../firebase.init";
 
 const AuthContext = React.createContext();
@@ -22,6 +23,9 @@ export default function AuthProvider({ children }) {
   // get authentication from Firebase, and initialize using Configuration.
   const auth = getAuth(app);
 
+  // useNavigate Hook to navigate when Logout, getting out of Protected Route
+  const navigate = useNavigate();
+
   useEffect(() => {
     const subscription = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
@@ -29,7 +33,7 @@ export default function AuthProvider({ children }) {
     });
 
     return subscription;
-  }, []);
+  }, [auth]);
 
   // Sign Up Function
 
@@ -56,6 +60,7 @@ export default function AuthProvider({ children }) {
   // Logout Function
 
   function logout() {
+    navigate("/login");
     return signOut(auth);
   }
 
