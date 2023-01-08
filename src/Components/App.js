@@ -11,8 +11,8 @@ import SignUp from "./Pages/SignUp";
 export default function App() {
   return (
     <div className="App">
-      <AuthProvider>
-        <Layout>
+      <Layout>
+        <AuthProvider>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="signup" element={<SignUp />} />
@@ -20,8 +20,8 @@ export default function App() {
             <Route path="quiz" element={<Quiz />} />
             <Route path="result" element={<Result />} />
           </Routes>
-        </Layout>
-      </AuthProvider>
+        </AuthProvider>
+      </Layout>
     </div>
   );
 }

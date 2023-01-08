@@ -7,6 +7,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import React, { useContext, useEffect, useState } from "react";
+import app from "../firebase.init";
 
 const AuthContext = React.createContext();
 
@@ -18,7 +19,8 @@ export default function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
   const [currentUser, setCurrentUser] = useState();
 
-  const auth = getAuth();
+  // get authentication from Firebase, and initialize using Configuration.
+  const auth = getAuth(app);
 
   useEffect(() => {
     const subscription = onAuthStateChanged(auth, (user) => {
@@ -27,7 +29,7 @@ export default function AuthProvider({ children }) {
     });
 
     return subscription;
-  }, []);
+  }, [auth]);
 
   // Sign Up Function
 
