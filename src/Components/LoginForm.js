@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../Contexts/AuthContext";
 import Button from "./Button";
 import Form from "./Form";
@@ -15,6 +15,9 @@ const LoginForm = () => {
   const [error, setError] = useState();
 
   const navigate = useNavigate();
+  const location = useLocation();
+
+  let from = location.state?.from?.pathname || "/";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,7 +25,7 @@ const LoginForm = () => {
     setLoading(true);
     try {
       await login(email, password);
-      navigate("/");
+      navigate(from, { replace: true });
     } catch (error) {
       setLoading(false);
       setError(`${error.message}`);

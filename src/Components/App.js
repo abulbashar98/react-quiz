@@ -7,6 +7,7 @@ import Login from "./Pages/Login";
 import Quiz from "./Pages/Quiz";
 import Result from "./Pages/Result";
 import SignUp from "./Pages/SignUp";
+import RequireAuth from "./PrivateRoute/RequireAuth";
 
 export default function App() {
   return (
@@ -14,7 +15,14 @@ export default function App() {
       <AuthProvider>
         <Layout>
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route
+              path="/"
+              element={
+                <RequireAuth>
+                  <Home />
+                </RequireAuth>
+              }
+            />
             <Route path="signup" element={<SignUp />} />
             <Route path="login" element={<Login />} />
             <Route path="quiz" element={<Quiz />} />
