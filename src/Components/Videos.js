@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import useVideoList from "../Hooks/useVideoList";
-import classes from "../styles/videos.module.css";
+import classes from "../styles/Videos.module.css";
 import Video from "./Video";
 
 const Videos = () => {
@@ -13,7 +13,7 @@ const Videos = () => {
       {videos.length > 0 &&
         videos.map((video) =>
           video.noq > 0 ? (
-            <Link to="/quiz">
+            <Link to={`/quiz/${video.youtubeID}`}>
               <Video
                 title={video.title}
                 id={video.youtubeID}

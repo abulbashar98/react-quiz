@@ -25,7 +25,7 @@ export default function App() {
             />
             <Route path="signup" element={<SignUp />} />
             <Route path="login" element={<Login />} />
-            <Route path="quiz" element={<Quiz />} />
+            <Route path="quiz/:id" element={<Quiz />} />
             <Route path="result" element={<Result />} />
           </Routes>
         </Layout>
