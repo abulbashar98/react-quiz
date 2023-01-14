@@ -57,19 +57,47 @@ const Quiz = () => {
     });
   };
 
+  // handle when the user clicks on next question button to get the
+  // next Question.
+
+  function nextQuestion() {
+    if (currentQuestion + 1 < questions.length) {
+      console.log(currentQuestion, questions.length);
+      setCurrentQuestion((prevCurrent) => prevCurrent + 1);
+    }
+  }
+  // handle when the user clicks on  Previous Logo, to get the previous Question .
+
+  function prevQuestion() {
+    if (currentQuestion >= 1 || currentQuestion <= questions.length) {
+      setCurrentQuestion((prevCurrent) => prevCurrent - 1);
+    } else {
+      return;
+    }
+  }
+
+  // Calculate Percentage of Progress
+
+  const percentage =
+    questions.length > 0 ? ((currentQuestion + 1) / questions.length) * 100 : 0;
+
   return (
     <>
       {loading && <div>Loading....</div>}
       {error && <div>There was an ERROR!</div>}
       {!loading && !error && qna && qna.length > 0 && (
         <>
-          <h1>{qna[currentQuestion].title}</h1>
+          <h1>{qna[currentQuestion]?.title}</h1>
           <h4>Question can have multiple answers</h4>
           <Answers
-            options={qna[currentQuestion].options}
+            options={qna[currentQuestion]?.options}
             handleChange={handleAnswerChange}
           />
-          <ProgressBar />
+          <ProgressBar
+            next={nextQuestion}
+            prev={prevQuestion}
+            progress={percentage}
+          />
           <MiniPlayer />
         </>
       )}
