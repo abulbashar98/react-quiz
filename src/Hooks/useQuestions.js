@@ -35,10 +35,7 @@ export default function useQuestions(videoID) {
         setError(true);
       }
     }
-
-    setTimeout(() => {
-      fetchQuestions();
-    }, 3000);
+    fetchQuestions();
   }, [videoID]);
 
   return {
