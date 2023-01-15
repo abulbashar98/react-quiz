@@ -26,8 +26,9 @@ export default function useQuestions(videoID) {
         if (snapshot.exists()) {
           setLoading(false);
           setQuestions((prevQuestions) => {
-            return [prevQuestions, ...Object.values(snapshot.val())];
+            return [...prevQuestions, ...Object.values(snapshot.val())];
           });
+          //   console.log("got questions");
         }
       } catch (error) {
         console.log(error);
@@ -36,9 +37,7 @@ export default function useQuestions(videoID) {
       }
     }
 
-    setTimeout(() => {
-      fetchQuestions();
-    }, 3000);
+    fetchQuestions();
   }, [videoID]);
 
   return {

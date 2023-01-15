@@ -15,18 +15,25 @@ export default function App() {
       <AuthProvider>
         <Layout>
           <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="signup" element={<SignUp />} />
+            <Route path="login" element={<Login />} />
             <Route
-              path="/"
+              path="quiz/:id"
               element={
                 <RequireAuth>
-                  <Home />
+                  <Quiz />
                 </RequireAuth>
               }
             />
-            <Route path="signup" element={<SignUp />} />
-            <Route path="login" element={<Login />} />
-            <Route path="quiz" element={<Quiz />} />
-            <Route path="result" element={<Result />} />
+            <Route
+              path="result/:id"
+              element={
+                <RequireAuth>
+                  <Result />
+                </RequireAuth>
+              }
+            />
           </Routes>
         </Layout>
       </AuthProvider>
