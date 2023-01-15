@@ -36,6 +36,7 @@ export default function useQuestions(videoID) {
         setError(true);
       }
     }
+
     fetchQuestions();
   }, [videoID]);
 

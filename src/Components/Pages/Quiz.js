@@ -1,6 +1,9 @@
+import { getDatabase, ref, set } from "@firebase/database";
 import _ from "lodash";
 import React, { useEffect, useReducer, useState } from "react";
 import { useParams } from "react-router";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../Contexts/AuthContext";
 import useQuestions from "../../Hooks/useQuestions";
 import Answers from "../Answers";
 import MiniPlayer from "../MiniPlayer";
@@ -24,6 +27,9 @@ const reducer = (state, action) => {
       const questions = _.cloneDeep(state);
       questions[action.questionID].options[action.optionIndex].checked =
         action.value;
+      console.log(
+        questions[action.questionID].options[action.optionIndex].checked
+      );
       return questions;
 
     default:
@@ -37,6 +43,10 @@ const Quiz = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
 
   const [qna, dispatch] = useReducer(reducer, initialState);
+  console.log(qna);
+
+  const { currentUser } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     // console.log(questions);
@@ -55,6 +65,7 @@ const Quiz = () => {
       optionIndex: index,
       value: e.target.checked,
     });
+    console.log(e.target.checked);
   };
 
   // handle when the user clicks on next question button to get the
@@ -69,11 +80,31 @@ const Quiz = () => {
   // handle when the user clicks on  Previous Logo, to get the previous Question .
 
   function prevQuestion() {
-    if (currentQuestion >= 1 || currentQuestion <= questions.length) {
+    if (currentQuestion >= 1 && currentQuestion <= questions.length) {
       setCurrentQuestion((prevCurrent) => prevCurrent - 1);
     } else {
       return;
     }
+  }
+
+  // Submit Quiz to To Show Results based on individual uid  in Results Component
+
+  async function submit() {
+    console.log("fired");
+    const { uid } = currentUser;
+
+    const db = getDatabase();
+    const resultRef = ref(db, `result/${uid}`);
+
+    await set(resultRef, {
+      [id]: qna,
+    });
+
+    navigate(`/result/${id}`, {
+      state: {
+        qna: qna,
+      },
+    });
   }
 
   // Calculate Percentage of Progress
@@ -96,6 +127,7 @@ const Quiz = () => {
           <ProgressBar
             next={nextQuestion}
             prev={prevQuestion}
+            submit={submit}
             progress={percentage}
           />
           <MiniPlayer />
