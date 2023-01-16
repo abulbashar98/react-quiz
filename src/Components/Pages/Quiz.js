@@ -43,7 +43,6 @@ const Quiz = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
 
   const [qna, dispatch] = useReducer(reducer, initialState);
-  console.log(qna);
 
   const { currentUser } = useAuth();
   const navigate = useNavigate();
@@ -123,6 +122,7 @@ const Quiz = () => {
           <Answers
             options={qna[currentQuestion]?.options}
             handleChange={handleAnswerChange}
+            input
           />
           <ProgressBar
             next={nextQuestion}

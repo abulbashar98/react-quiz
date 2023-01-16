@@ -2,17 +2,18 @@ import React from "react";
 import image from "../Assets/images/success.png";
 import classes from "../styles/Summary.module.css";
 
-const Summary = () => {
+const Summary = ({ score, noq }) => {
   return (
-    <div class={classes.summary}>
-      <div class={classes.point}>
+    <div className={classes.summary}>
+      <div className={classes.point}>
         {/* <!-- progress bar will be placed here --> */}
-        <p class={classes.score}>
-          Your score is <br />5 out of 10
+        <p className={classes.score}>
+          Your score is <br />
+          {score} out of {noq * 5}
         </p>
       </div>
 
-      <div class={classes.badge}>
+      <div className={classes.badge}>
         <img src={image} alt="Success" />
       </div>
     </div>
