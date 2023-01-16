@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React from "react";
 import { useLocation, useParams } from "react-router";
 import useAnswers from "../../Hooks/useAnswers";
@@ -13,13 +14,39 @@ const Result = () => {
   // console.log(qna);
   // console.log(answers);
 
+  // Function to compare user outputs from qna and correct answers from answers to Calculate Score
+
+  function calculate() {
+    let score = 0;
+
+    answers.forEach((question, index1) => {
+      let correctIndexes = [];
+      let checkedIndexes = [];
+
+      question.options.forEach((option, index2) => {
+        if (option.correct) correctIndexes.push(index2);
+        if (qna[index1].options[index2].checked) {
+          checkedIndexes.push(index2);
+          option.checked = true;
+        }
+      });
+      if (_.isEqual(correctIndexes, checkedIndexes)) {
+        score = score + 5;
+      }
+    });
+
+    return score;
+  }
+
+  const userScore = calculate();
+
   return (
     <div>
       {loading && <div>Loading....</div>}
       {error && <div>There was an Error!</div>}
       {answers && answers.length > 0 && (
         <>
-          <Summary />
+          <Summary score={userScore} noq={answers.length} />
           <Analysis />
         </>
       )}
