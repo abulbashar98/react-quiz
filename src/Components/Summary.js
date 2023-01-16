@@ -5,14 +5,14 @@ import classes from "../styles/Summary.module.css";
 const Summary = () => {
   return (
     <div class={classes.summary}>
-      <div class={classes.point}>
+      <div className={classes.point}>
         {/* <!-- progress bar will be placed here --> */}
-        <p class={classes.score}>
+        <p className={classes.score}>
           Your score is <br />5 out of 10
         </p>
       </div>
 
-      <div class={classes.badge}>
+      <div className={classes.badge}>
         <img src={image} alt="Success" />
       </div>
     </div>

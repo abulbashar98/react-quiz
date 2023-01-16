@@ -21,7 +21,10 @@ export default function useAnswers(videoID) {
         if (snapshot.exists()) {
           setLoading(false);
           setAnswers((prevAnswers) => {
-            return [...prevAnswers, ...Object.values(snapshot.val())];
+            return [...prevAnswers, ...Object.values(snapshot.val())].slice(
+              0,
+              4
+            );
           });
           //   console.log("got answers");
         }
