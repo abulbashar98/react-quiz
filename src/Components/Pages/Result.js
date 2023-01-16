@@ -12,7 +12,7 @@ const Result = () => {
   const { qna } = state;
   const { loading, error, answers } = useAnswers(id);
   // console.log(qna);
-  // console.log(answers);
+  console.log(answers);
 
   // Function to compare user outputs from qna and correct answers from answers to Calculate Score
 
@@ -47,7 +47,7 @@ const Result = () => {
       {answers && answers.length > 0 && (
         <>
           <Summary score={userScore} noq={answers.length} />
-          <Analysis />
+          <Analysis answers={answers} />
         </>
       )}
     </div>

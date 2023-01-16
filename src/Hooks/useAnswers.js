@@ -10,7 +10,7 @@ export default function useAnswers(videoID) {
   useEffect(() => {
     async function fetchAnswers() {
       const database = getDatabase();
-      const answerRef = ref(database, "quiz/" + videoID + "/questions");
+      const answerRef = ref(database, "answers/" + videoID + "/questions");
       const answerQuery = query(answerRef, orderByKey());
 
       try {

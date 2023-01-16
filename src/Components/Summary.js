@@ -4,7 +4,7 @@ import classes from "../styles/Summary.module.css";
 
 const Summary = ({ score, noq }) => {
   return (
-    <div class={classes.summary}>
+    <div className={classes.summary}>
       <div className={classes.point}>
         {/* <!-- progress bar will be placed here --> */}
         <p className={classes.score}>
