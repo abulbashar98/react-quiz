@@ -26,7 +26,10 @@ export default function useQuestions(videoID) {
         if (snapshot.exists()) {
           setLoading(false);
           setQuestions((prevQuestions) => {
-            return [...prevQuestions, ...Object.values(snapshot.val())];
+            return [...prevQuestions, ...Object.values(snapshot.val())].slice(
+              0,
+              4
+            );
           });
           //   console.log("got questions");
         }
