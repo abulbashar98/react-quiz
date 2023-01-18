@@ -34,7 +34,6 @@ const MiniPlayer = ({ id, title }) => {
         close
       </span>
       <ReactPlayer
-        className={classes.player}
         url={videoUrl}
         playing={!status}
         controls={status}
