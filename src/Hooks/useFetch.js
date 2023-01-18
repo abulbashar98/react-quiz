@@ -6,7 +6,7 @@ export default function useFetch(url, method, headers) {
   const [result, setResult] = useState(null);
 
   useEffect(() => {
-    async function fetchPhotos() {
+    async function requestFetch() {
       try {
         setLoading(true);
         setError(false);
@@ -14,17 +14,17 @@ export default function useFetch(url, method, headers) {
           method: method || "GET",
           headers: headers,
         });
-        const data = response.json();
+        const data = await response.json();
         setLoading(false);
         setResult(data);
-      } catch (error) {
+      } catch (err) {
+        console.log(err);
         setLoading(false);
         setError(true);
-        console.log(error.message);
       }
     }
-
-    fetchPhotos();
+    requestFetch();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return {
